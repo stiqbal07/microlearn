@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- PWA / iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MicroLearn">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#5856D6">
+
+  <title>MicroLearn ⚡</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Views are rendered here by JavaScript -->
+    <div id="view-container"></div>
+
+    <!-- Bottom Tab Bar -->
+    <nav id="tab-bar">
+      <button class="tab-btn active" data-tab="home">
+        <span class="tab-icon">🏠</span>
+        <span class="tab-label">Home</span>
+      </button>
+      <button class="tab-btn" data-tab="leaderboard">
+        <span class="tab-icon">🏆</span>
+        <span class="tab-label">Ranks</span>
+      </button>
+      <button class="tab-btn" data-tab="resources">
+        <span class="tab-icon">🔗</span>
+        <span class="tab-label">Resources</span>
+      </button>
+      <button class="tab-btn" data-tab="profile">
+        <span class="tab-icon">👤</span>
+        <span class="tab-label">Profile</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Level Up Overlay -->
+  <div id="level-up-overlay" class="hidden">
+    <div class="level-up-card">
+      <span class="level-up-emoji">🎉</span>
+      <div class="level-up-title">Level Up!</div>
+      <div class="level-up-sub" id="lu-level">Level 2</div>
+      <div style="font-size:15px;opacity:.8;margin-bottom:20px" id="lu-title">Scholar</div>
+      <button class="level-up-btn" onclick="dismissLevelUp()">Keep Going!</button>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
