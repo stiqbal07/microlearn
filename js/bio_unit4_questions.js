@@ -14,7 +14,7 @@
 
 // ── LESSON 1: How are cancer cells different from normal cells? ──────────────
 
-    {id:'b31', topic:'Mitosis', diff:'easy',
+    {id:'b70', topic:'Mitosis', diff:'easy',
      q:'What is the primary purpose of mitosis?',
      opts:['To produce two genetically identical daughter cells for growth and repair',
            'To produce four haploid cells for reproduction',
@@ -22,7 +22,7 @@
            'To exchange genetic material between homologous chromosomes'],
      exp:'Mitosis produces two diploid, genetically identical daughter cells used for growth, development, and tissue repair. Meiosis (not mitosis) produces gametes.'},
 
-    {id:'b32', topic:'Cancer Biology', diff:'medium',
+    {id:'b71', topic:'Cancer Biology', diff:'medium',
      q:'Which statement correctly describes the morphological difference between cancer cells and normal cells?',
      opts:['Cancer cells are often irregular in shape with large, dark-staining nuclei',
            'Cancer cells are smaller and more uniform than normal cells',
@@ -30,7 +30,7 @@
            'Cancer cells lack a cell membrane'],
      exp:'Cancer cells typically appear irregular in shape, have large nuclei with prominent nucleoli, and stain more darkly due to increased DNA content. Normal cells are uniform and orderly.'},
 
-    {id:'b33', topic:'Cancer Biology', diff:'medium',
+    {id:'b72', topic:'Cancer Biology', diff:'medium',
      q:'How do mitotic rates differ between cancer cells and normal cells?',
      opts:['Cancer cells divide more rapidly and without the normal controls that limit division',
            'Cancer cells divide more slowly than normal cells',
@@ -38,7 +38,7 @@
            'Cancer cells only divide once, then stop'],
      exp:'Cancer cells have lost the regulatory controls (checkpoints, contact inhibition) that limit division, so they divide continuously and at a much faster rate than normal cells.'},
 
-    {id:'b34', topic:'Cancer Biology', diff:'medium',
+    {id:'b73', topic:'Cancer Biology', diff:'medium',
      q:'What is apoptosis, and how does it differ in cancer cells?',
      opts:['Apoptosis is programmed cell death; cancer cells evade it and survive longer than they should',
            'Apoptosis is cell division; cancer cells undergo it more frequently',
@@ -46,7 +46,7 @@
            'Apoptosis is cell growth; it is increased in cancer cells'],
      exp:'Apoptosis = controlled, programmed cell death. Normal cells die on schedule. Cancer cells disable apoptosis pathways, allowing damaged cells to survive and continue dividing.'},
 
-    {id:'b35', topic:'Cancer Biology', diff:'hard',
+    {id:'b74', topic:'Cancer Biology', diff:'hard',
      q:'What is contact inhibition, and what happens to it in cancer cells?',
      opts:['Contact inhibition is a process where normal cells stop dividing when they touch neighboring cells; cancer cells lose this ability',
            'Contact inhibition is when cells attract each other; cancer cells show increased contact inhibition',
@@ -56,7 +56,7 @@
 
 // ── LESSON 2: How is the rate of cell division regulated? ────────────────────
 
-    {id:'b36', topic:'Cell Cycle', diff:'easy',
+    {id:'b75', topic:'Cell Cycle', diff:'easy',
      q:'What is the correct order of the major stages of the cell cycle?',
      opts:['G1 → S → G2 → M (mitosis)',
            'S → G1 → G2 → M (mitosis)',
@@ -64,7 +64,7 @@
            'G1 → G2 → S → M (mitosis)'],
      exp:'G1 (growth), S (DNA synthesis/replication), G2 (growth & prep), M (mitosis & cytokinesis). Together G1+S+G2 = interphase.'},
 
-    {id:'b37', topic:'Cell Cycle', diff:'medium',
+    {id:'b76', topic:'Cell Cycle', diff:'medium',
      q:'What is the role of cell cycle checkpoints?',
      opts:['To verify that each phase is completed correctly before allowing the cell to proceed to the next phase',
            'To speed up the cell cycle by skipping unnecessary steps',
@@ -72,7 +72,7 @@
            'To copy DNA during the S phase'],
      exp:'Checkpoints (G1, G2, and spindle checkpoints) are quality-control stops. The cell only moves forward if conditions are met — DNA is undamaged, replication is complete, chromosomes are aligned.'},
 
-    {id:'b38', topic:'Cell Cycle', diff:'medium',
+    {id:'b77', topic:'Cell Cycle', diff:'medium',
      q:'What happens to cell cycle checkpoints in a cancer cell?',
      opts:['Checkpoints are bypassed or disabled, allowing cells with damaged DNA to continue dividing',
            'Checkpoints are strengthened, causing cancer cells to divide more carefully',
@@ -80,7 +80,7 @@
            'Checkpoints are unaffected — only apoptosis changes in cancer'],
      exp:'Mutations in checkpoint proteins (like p53) disable these quality controls. Cancer cells bypass checkpoints, allowing cells with damaged or mutated DNA to keep dividing and passing errors to daughter cells.'},
 
-    {id:'b39', topic:'Cell Cycle', diff:'medium',
+    {id:'b78', topic:'Cell Cycle', diff:'medium',
      q:'What is the role of apoptosis in the normal cell life cycle?',
      opts:['It eliminates damaged, infected, or no-longer-needed cells in a controlled way',
            'It triggers cell division when nutrients are available',
@@ -88,7 +88,7 @@
            'It copies DNA during the S phase'],
      exp:'Apoptosis is the cell\'s built-in self-destruct mechanism. It removes cells that are damaged beyond repair, potentially cancerous, or simply no longer needed (e.g., cells between fingers during development).'},
 
-    {id:'b40', topic:'Cell Cycle', diff:'hard',
+    {id:'b79', topic:'Cell Cycle', diff:'hard',
      q:'What is the role of the p53 protein in the cell cycle?',
      opts:['p53 acts as a tumor suppressor — it detects DNA damage and either halts the cell cycle for repair or triggers apoptosis',
            'p53 promotes rapid cell division by activating growth genes',
@@ -98,7 +98,7 @@
 
 // ── LESSON 3: Why do we have different types of cells? ───────────────────────
 
-    {id:'b41', topic:'Cell Differentiation', diff:'medium',
+    {id:'b80', topic:'Cell Differentiation', diff:'medium',
      q:'Which types of cells primarily undergo mitosis in an adult human?',
      opts:['Somatic (body) cells such as skin, intestinal lining, and blood cells',
            'Neurons (nerve cells) — they divide constantly throughout life',
@@ -106,7 +106,7 @@
            'Only embryonic cells undergo mitosis; adult cells do not'],
      exp:'Most adult somatic cells can undergo mitosis, especially those that need frequent replacement (skin, gut lining, blood cells). Neurons and muscle cells rarely divide. Red blood cells have no nucleus and cannot divide.'},
 
-    {id:'b42', topic:'Cell Differentiation', diff:'medium',
+    {id:'b81', topic:'Cell Differentiation', diff:'medium',
      q:'Why do skin cells divide much more frequently than liver cells?',
      opts:['Skin cells are continuously shed and need rapid replacement; liver cells are replaced slowly',
            'Skin cells have more DNA, so they replicate faster',
@@ -114,7 +114,7 @@
            'Skin cells respond to hormones that speed up mitosis in all cell types'],
      exp:'Different cell types have very different mitotic rates based on their function. Skin and intestinal cells turn over rapidly (days to weeks). Liver cells regenerate on demand. Neurons in the brain rarely divide at all.'},
 
-    {id:'b43', topic:'Cell Differentiation', diff:'easy',
+    {id:'b82', topic:'Cell Differentiation', diff:'easy',
      q:'What is cell differentiation?',
      opts:['The process by which cells with identical DNA develop into specialized cell types with distinct structures and functions',
            'The process of a cell dividing into two identical daughter cells',
@@ -122,7 +122,7 @@
            'The death of cells that are no longer needed by the body'],
      exp:'All cells in your body have the same DNA, but gene expression differs. Differentiation = cells "switching on" specific genes so a skin cell looks and behaves differently from a neuron or a muscle cell.'},
 
-    {id:'b44', topic:'Stem Cells', diff:'medium',
+    {id:'b83', topic:'Stem Cells', diff:'medium',
      q:'What is the role of stem cells in complex organisms?',
      opts:['Stem cells are undifferentiated cells that can divide and develop into specialized cell types to build and maintain tissues',
            'Stem cells are fully differentiated cells that cannot divide further',
@@ -130,7 +130,7 @@
            'Stem cells are a type of cancer cell that divides without control'],
      exp:'Stem cells are the body\'s "master cells." They self-renew and can differentiate into specialized cells. Embryonic stem cells can become any cell type; adult stem cells (e.g., bone marrow) replace specific tissues throughout life.'},
 
-    {id:'b45', topic:'Stem Cells', diff:'hard',
+    {id:'b84', topic:'Stem Cells', diff:'hard',
      q:'Which best describes regeneration as it relates to stem cells?',
      opts:['Regeneration is the ability of some organisms to regrow lost tissues or organs, powered by stem cells that differentiate into needed cell types',
            'Regeneration refers to DNA repair during the S phase of the cell cycle',
@@ -140,7 +140,7 @@
 
 // ── LESSON 4: How do cells replicate their DNA? ──────────────────────────────
 
-    {id:'b46', topic:'DNA Replication', diff:'easy',
+    {id:'b85', topic:'DNA Replication', diff:'easy',
      q:'Which are the four components that make up the structure of a DNA nucleotide?',
      opts:['A phosphate group, deoxyribose sugar, and one of four nitrogenous bases (A, T, G, or C)',
            'A ribose sugar, phosphate group, and one of four bases (A, U, G, or C)',
@@ -148,7 +148,7 @@
            'A phospholipid, nitrogen base, and a carbohydrate'],
      exp:'DNA nucleotide = phosphate + deoxyribose sugar + nitrogenous base. The four bases: Adenine (A), Thymine (T), Guanine (G), Cytosine (C). RNA uses ribose and Uracil instead of Thymine.'},
 
-    {id:'b47', topic:'DNA Replication', diff:'medium',
+    {id:'b86', topic:'DNA Replication', diff:'medium',
      q:'What is the role of helicase in DNA replication?',
      opts:['Helicase unwinds and separates the two strands of the DNA double helix at the replication fork',
            'Helicase adds new complementary nucleotides to the growing DNA strand',
@@ -156,7 +156,7 @@
            'Helicase synthesizes a short RNA primer to start replication'],
      exp:'Helicase breaks the hydrogen bonds between complementary base pairs, "unzipping" the double helix to expose the template strands. Think of it as a molecular zipper-opener.'},
 
-    {id:'b48', topic:'DNA Replication', diff:'medium',
+    {id:'b87', topic:'DNA Replication', diff:'medium',
      q:'What is the role of primase in DNA replication?',
      opts:['Primase synthesizes a short RNA primer that gives DNA polymerase a starting point',
            'Primase unwinds the double helix at the replication fork',
@@ -164,7 +164,7 @@
            'Primase proofreads the newly synthesized DNA for errors'],
      exp:'DNA polymerase can only add nucleotides to an existing strand — it cannot start from scratch. Primase lays down a short RNA primer (5–10 nucleotides) that DNA polymerase then extends.'},
 
-    {id:'b49', topic:'DNA Replication', diff:'medium',
+    {id:'b88', topic:'DNA Replication', diff:'medium',
      q:'What is the role of DNA polymerase in DNA replication?',
      opts:['DNA polymerase reads the template strand and adds complementary nucleotides to synthesize a new DNA strand in the 5\'→3\' direction',
            'DNA polymerase unzips the double helix by breaking hydrogen bonds',
@@ -172,7 +172,7 @@
            'DNA polymerase joins the two new DNA molecules together after replication'],
      exp:'DNA polymerase is the main replication enzyme — it builds the new strand by adding nucleotides (A with T, G with C) and also proofreads for errors. It can only work 5\'→3\'.'},
 
-    {id:'b50', topic:'DNA Replication', diff:'medium',
+    {id:'b89', topic:'DNA Replication', diff:'medium',
      q:'What is the role of DNA ligase in DNA replication?',
      opts:['Ligase joins (seals) the gaps between Okazaki fragments on the lagging strand, completing the new DNA strand',
            'Ligase unwinds the DNA double helix to expose the template strands',
@@ -180,7 +180,7 @@
            'Ligase adds nucleotides to the leading strand during replication'],
      exp:'The lagging strand is synthesized in fragments (Okazaki fragments). After the RNA primers are removed, ligase acts like molecular glue — sealing the nicks in the sugar-phosphate backbone to create a continuous strand.'},
 
-    {id:'b51', topic:'DNA Replication', diff:'hard',
+    {id:'b90', topic:'DNA Replication', diff:'hard',
      q:"What does it mean for DNA strands to be anti-parallel?",
      opts:["The two strands run in opposite directions — one runs 5'→3' and the other runs 3'→5'",
            "The two strands have the same base sequence but different chemical compositions",
@@ -188,7 +188,7 @@
            "Anti-parallel means the strands repel each other magnetically"],
      exp:"Each DNA strand has a 5' end (phosphate) and a 3' end (hydroxyl). The two strands are oriented oppositely: if one runs 5'→3' top-to-bottom, the complementary strand runs 3'→5' top-to-bottom. This is why the lagging strand is copied in fragments."},
 
-    {id:'b52', topic:'DNA Replication', diff:'hard',
+    {id:'b91', topic:'DNA Replication', diff:'hard',
      q:'What does "semi-conservative replication" mean?',
      opts:['Each new DNA molecule consists of one original (parental) strand and one newly synthesized strand',
            'Only half of the DNA molecule is copied during each round of replication',
@@ -196,7 +196,7 @@
            'Semi-conservative means replication only happens in the S phase'],
      exp:'Meselson-Stahl (1958) confirmed: after replication, each daughter DNA double helix keeps one original strand paired with one new strand. "Semi" = half old, half new.'},
 
-    {id:'b53', topic:'DNA Replication', diff:'easy',
+    {id:'b92', topic:'DNA Replication', diff:'easy',
      q:'What are the base-pairing rules for DNA?',
      opts:['Adenine (A) pairs with Thymine (T); Guanine (G) pairs with Cytosine (C)',
            'Adenine (A) pairs with Guanine (G); Thymine (T) pairs with Cytosine (C)',
@@ -206,7 +206,7 @@
 
 // ── LESSON 5: What is Central Dogma? ────────────────────────────────────────
 
-    {id:'b54', topic:'Central Dogma', diff:'easy',
+    {id:'b93', topic:'Central Dogma', diff:'easy',
      q:'Where does transcription occur in a eukaryotic cell?',
      opts:['In the nucleus, where DNA is located',
            'In the cytoplasm, at the ribosome',
@@ -214,7 +214,7 @@
            'In the endoplasmic reticulum'],
      exp:'Transcription happens in the nucleus — RNA polymerase reads the DNA template and produces mRNA. The mRNA then travels to the cytoplasm for translation.'},
 
-    {id:'b55', topic:'Central Dogma', diff:'easy',
+    {id:'b94', topic:'Central Dogma', diff:'easy',
      q:'Where does translation occur in a eukaryotic cell?',
      opts:['In the cytoplasm, at ribosomes',
            'In the nucleus, where DNA is located',
@@ -222,7 +222,7 @@
            'In the smooth endoplasmic reticulum'],
      exp:'Translation occurs at ribosomes in the cytoplasm (or on the rough ER). Ribosomes read the mRNA codons and assemble the amino acid chain (polypeptide).'},
 
-    {id:'b56', topic:'Central Dogma', diff:'medium',
+    {id:'b95', topic:'Central Dogma', diff:'medium',
      q:'Which best describes the process of transcription?',
      opts:['RNA polymerase reads a DNA template strand and synthesizes a complementary mRNA strand',
            'Ribosomes read the mRNA and assemble a chain of amino acids',
@@ -230,7 +230,7 @@
            'tRNA carries amino acids to the ribosome for assembly into proteins'],
      exp:'Transcription: DNA → mRNA. RNA polymerase unwinds the DNA, reads the template 3\'→5\', and builds mRNA 5\'→3\' using complementary base pairing (except U replaces T in RNA).'},
 
-    {id:'b57', topic:'Central Dogma', diff:'medium',
+    {id:'b96', topic:'Central Dogma', diff:'medium',
      q:'Which best describes the process of translation?',
      opts:['Ribosomes read mRNA codons and tRNA molecules deliver matching amino acids to build a polypeptide chain',
            'RNA polymerase reads DNA and produces an mRNA copy',
@@ -238,7 +238,7 @@
            'The polypeptide chain folds into a 3D protein shape'],
      exp:'Translation: mRNA → protein. Ribosome reads each 3-nucleotide codon; tRNA anticodons match and deliver the correct amino acid; the growing polypeptide chain is released at a stop codon.'},
 
-    {id:'b58', topic:'Central Dogma', diff:'hard',
+    {id:'b97', topic:'Central Dogma', diff:'hard',
      q:'Using the codon chart: what amino acid does the codon AUG code for?',
      opts:['Methionine (Met) — it is also the universal start codon',
            'Leucine (Leu)',
@@ -246,7 +246,7 @@
            'It is a stop codon'],
      exp:'AUG codes for methionine AND serves as the universal start codon — every protein begins with AUG. UAA, UAG, and UGA are the three stop codons.'},
 
-    {id:'b59', topic:'Central Dogma', diff:'hard',
+    {id:'b98', topic:'Central Dogma', diff:'hard',
      q:'How do amino acid side chains (R groups) determine protein folding?',
      opts:['Interactions between R groups (hydrogen bonds, ionic bonds, hydrophobic interactions) cause the polypeptide to fold into a specific 3D shape',
            'All amino acids have identical R groups, so folding is random',
@@ -254,7 +254,7 @@
            'R groups only affect the color of the protein, not its shape'],
      exp:'Each amino acid has a unique R group that is polar, nonpolar, charged, or hydrophobic. These properties drive folding: hydrophobic R groups cluster inside, charged ones face outward toward water. Shape = function.'},
 
-    {id:'b60', topic:'Central Dogma', diff:'hard',
+    {id:'b99', topic:'Central Dogma', diff:'hard',
      q:'Why is correct protein folding essential for function?',
      opts:['The specific 3D shape of a protein determines its active site and ability to interact with other molecules',
            'Protein folding only affects how proteins are transported out of the cell',
@@ -264,7 +264,7 @@
 
 // ── LESSON 6: How does a mutation lead to a change in protein? ───────────────
 
-    {id:'b61', topic:'Mutations', diff:'easy',
+    {id:'b100', topic:'Mutations', diff:'easy',
      q:'What is a substitution mutation?',
      opts:['One nucleotide base is replaced by a different base in the DNA sequence',
            'One or more nucleotide bases are added to the DNA sequence',
@@ -272,7 +272,7 @@
            'Two chromosomes exchange segments of DNA'],
      exp:'Substitution (point mutation): one base swaps for another (e.g., A→G). May change an amino acid (missense), create a stop codon (nonsense), or have no effect (silent mutation).'},
 
-    {id:'b62', topic:'Mutations', diff:'medium',
+    {id:'b101', topic:'Mutations', diff:'medium',
      q:'Why are insertion and deletion mutations often more damaging than substitution mutations?',
      opts:['Insertions and deletions cause a frameshift — all codons downstream are read in the wrong frame, scrambling the entire protein',
            'Insertions and deletions only affect a single amino acid, making the damage minor',
@@ -280,7 +280,7 @@
            'Insertions and deletions only occur in non-coding DNA and have no effect'],
      exp:'Codons are read in groups of 3. Adding or removing a base shifts the reading frame for every codon that follows — like removing a letter from a sentence and re-reading: "THE CAT SAT" → "TEC ATS AT." The entire protein downstream is scrambled.'},
 
-    {id:'b63', topic:'Mutations', diff:'medium',
+    {id:'b102', topic:'Mutations', diff:'medium',
      q:'How does a mutation in DNA lead to a change in protein structure?',
      opts:['A changed DNA sequence → different mRNA codon during transcription → different amino acid delivered during translation → altered polypeptide that may fold differently',
            'A mutation directly changes the shape of a finished protein without affecting the DNA',
@@ -288,7 +288,7 @@
            'A mutation changes the ribosome, not the mRNA or amino acid sequence'],
      exp:'The pathway: mutated DNA → altered mRNA codon (transcription) → wrong amino acid inserted (translation) → polypeptide with changed R groups → different folding → altered or lost function.'},
 
-    {id:'b64', topic:'Mutations', diff:'hard',
+    {id:'b103', topic:'Mutations', diff:'hard',
      q:'What happens to the cell cycle if the p53 gene is mutated?',
      opts:['The G1 checkpoint fails — cells with damaged DNA bypass quality control and continue dividing, accumulating more mutations',
            'The cell cycle speeds up temporarily, then returns to normal',
@@ -296,7 +296,7 @@
            'Mutated p53 causes cells to stop dividing permanently'],
      exp:'Normally p53 halts the cycle at G1 to allow DNA repair, or triggers apoptosis if damage is irreparable. A mutated p53 protein cannot bind DNA or activate these pathways — damaged cells keep dividing, which is a hallmark of cancer.'},
 
-    {id:'b65', topic:'Mutations', diff:'hard',
+    {id:'b104', topic:'Mutations', diff:'hard',
      q:'How can a single nucleotide substitution in a gene lead to a completely non-functional protein?',
      opts:['The substitution may create a premature stop codon, producing a truncated protein that cannot fold or function correctly',
            'A single substitution never affects protein function — only large deletions do',
@@ -306,7 +306,7 @@
 
 // ── LESSON 7: How do external factors lead to cancer? ────────────────────────
 
-    {id:'b66', topic:'Cancer Biology', diff:'easy',
+    {id:'b105', topic:'Cancer Biology', diff:'easy',
      q:'What is a mutagen?',
      opts:['Any physical, chemical, or biological agent that increases the rate of mutations in DNA',
            'A protein that repairs DNA damage caused by radiation',
@@ -314,7 +314,7 @@
            'An enzyme that corrects errors during DNA replication'],
      exp:'Mutagens cause DNA mutations that can potentially lead to cancer. Examples: UV radiation (melanoma), tobacco smoke (lung cancer), certain chemicals, and some viruses (HPV → cervical cancer).'},
 
-    {id:'b67', topic:'Cancer Biology', diff:'medium',
+    {id:'b106', topic:'Cancer Biology', diff:'medium',
      q:'How can UV radiation from the sun cause skin cancer?',
      opts:['UV radiation causes thymine dimers — covalent bonds between adjacent thymine bases — that distort the DNA and can cause mutations if not repaired',
            'UV radiation directly destroys cancer cells, but also damages healthy cells',
@@ -322,7 +322,7 @@
            'UV radiation only damages the cell membrane, not the DNA itself'],
      exp:'UV-B radiation causes adjacent thymine bases to bond together (thymine dimers), distorting the DNA. Normally repaired by nucleotide excision repair — but if mutations accumulate in genes like p53, skin cancer can develop.'},
 
-    {id:'b68', topic:'Cancer Biology', diff:'medium',
+    {id:'b107', topic:'Cancer Biology', diff:'medium',
      q:'Which of the following is the best example of a chemical mutagen?',
      opts:['The carcinogens in tobacco smoke, which bind to DNA and cause base substitutions',
            'Visible light from a lamp',
@@ -330,7 +330,7 @@
            'Increased oxygen levels in the blood'],
      exp:'Tobacco smoke contains polycyclic aromatic hydrocarbons (PAHs) and other chemicals that bind to DNA bases, causing substitution mutations. This is why smoking dramatically increases the risk of lung, throat, and many other cancers.'},
 
-    {id:'b69', topic:'Cancer Biology', diff:'hard',
+    {id:'b108', topic:'Cancer Biology', diff:'hard',
      q:'Why does it usually take multiple mutations — not just one — for a normal cell to become cancerous?',
      opts:['Cancer requires mutations in multiple control systems simultaneously: cell cycle checkpoints, apoptosis pathways, growth factor signaling, and DNA repair genes',
            'One mutation is always sufficient to cause cancer if it occurs in p53',
