@@ -64,6 +64,7 @@ const S = {
   sesQueue:      [],
   sesUsed:       new Set(),
   sesQStart:     0,
+  sesRecycled:   0,
 
   // Resources filter
   resFilter:     'all',
@@ -493,9 +494,12 @@ function startSession() {
   S.sesSpeedStreak = 0;
   S.sesXP = 0;
   S.sesUsed = new Set();
+  S.sesRecycled = 0;
   S.sesTimeLeft = S.sesDuration * 60;
 
   // Build question queue (with optional unit filter)
+  const seed = typeof getDaySeed === 'function' ? getDaySeed() : Date.now();
+
   let allQ = S.sesSubjects.flatMap(sub => {
     let qs = QUESTION_BANK[sub] || [];
     if (S.sesSubjects.length === 1 && S.sesUnitId && typeof SUBJECT_UNITS !== 'undefined') {
@@ -507,8 +511,17 @@ function startSession() {
     return qs.map(q => ({...q, subject:sub}));
   });
 
-  // Daily seeded shuffle — same order all day, rotates tomorrow
-  const seed = typeof getDaySeed === 'function' ? getDaySeed() : Date.now();
+  // Auto-pad: if unit has < 12 questions, fill with other questions from same subject
+  if (S.sesUnitId && S.sesSubjects.length === 1 && allQ.length < 12) {
+    const sub = S.sesSubjects[0];
+    const usedIds = new Set(allQ.map(q => q.id));
+    const padQ = (QUESTION_BANK[sub] || [])
+      .filter(q => !usedIds.has(q.id))
+      .map(q => ({...q, subject:sub, _pad:true}));
+    const padShuffled = typeof seededShuffle === 'function' ? seededShuffle(padQ, seed + 1) : shuffle(padQ);
+    allQ = [...allQ, ...padShuffled.slice(0, 20 - allQ.length)];
+  }
+
   S.sesQueue = typeof seededShuffle === 'function' ? seededShuffle(allQ, seed) : shuffle(allQ);
   S.sesStartTime = Date.now();
 
@@ -544,8 +557,26 @@ function updateTimerDisplay() {
 }
 
 function nextQuestion() {
-  const q = S.sesQueue.find(q => !S.sesUsed.has(q.id));
-  if (!q) { endSession(); return; }
+  let q = S.sesQueue.find(q => !S.sesUsed.has(q.id));
+  if (!q) {
+    // Recycle: reshuffle and keep going
+    S.sesRecycled++;
+    S.sesUsed.clear();
+    const seed = (typeof getDaySeed === 'function' ? getDaySeed() : Date.now()) + S.sesRecycled;
+    S.sesQueue = typeof seededShuffle === 'function' ? seededShuffle(S.sesQueue, seed) : shuffle(S.sesQueue);
+    q = S.sesQueue[0];
+    if (!q) { endSession(); return; }
+    // Show brief recycle toast
+    const card = document.getElementById('ses-card');
+    if (card) {
+      const toast = document.createElement('div');
+      toast.style.cssText = 'position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.6);color:#fff;padding:4px 12px;border-radius:12px;font-size:12px;z-index:10;white-space:nowrap';
+      toast.textContent = '🔄 Round ' + (S.sesRecycled + 1);
+      card.style.position = 'relative';
+      card.appendChild(toast);
+      setTimeout(() => toast.remove(), 1800);
+    }
+  }
   S.sesUsed.add(q.id);
   S.sesQuestion = q;
   S.sesOptions = shuffle(q.opts);

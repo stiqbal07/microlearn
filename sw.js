@@ -1,4 +1,4 @@
-const CACHE = 'microlearn-v2';
+const CACHE = 'microlearn-v3';
 const ASSETS = [
   './',
   './index.html',
