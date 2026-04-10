@@ -59,6 +59,65 @@ const SUBJECT_UNITS = {
     { id:'esp_u5', name:'Vocabulary & Culture',        icon:'🌎', topics:['Vocabulary','Culture','Daily Routines'] },
     { id:'esp_u6', name:'Daily Routines (2.1)',        icon:'🌅', topics:['Daily Routines'] },
   ],
+
+  chemHonors: [
+    { id:'chem_u1', name:'Matter & Measurement',      icon:'⚗️',  topics:['Matter & Properties'] },
+    { id:'chem_u2', name:'Atomic Structure',           icon:'⚛️',  topics:['Atomic Structure'] },
+    { id:'chem_u3', name:'The Periodic Table',         icon:'🧪',  topics:['Periodic Table'] },
+    { id:'chem_u4', name:'Chemical Reactions',         icon:'🔥',  topics:['Chemical Reactions'] },
+  ],
+
+  apPhysics: [
+    { id:'phys_u1', name:'Measurement & Vectors',      icon:'📏',  topics:['Measurement & Vectors'] },
+    { id:'phys_u2', name:'Kinematics',                 icon:'🏃',  topics:['Kinematics'] },
+    { id:'phys_u3', name:"Newton's Laws",              icon:'🍎',  topics:["Newton's Laws"] },
+    { id:'phys_u4', name:'Energy & Work',              icon:'⚡',  topics:['Energy & Work'] },
+  ],
+
+  apPrecalc: [
+    { id:'pc_u1', name:'Functions',                    icon:'📊',  topics:['Functions'] },
+    { id:'pc_u2', name:'Transformations',              icon:'🔀',  topics:['Transformations'] },
+    { id:'pc_u3', name:'Trigonometry',                 icon:'📐',  topics:['Trigonometry'] },
+    { id:'pc_u4', name:'Exponential & Logarithmic',    icon:'📈',  topics:['Exponential & Log Review'] },
+    { id:'pc_u5', name:'Polynomials & Rational',       icon:'〰️',  topics:['Polynomial & Rational'] },
+  ],
+
+  apWorldHist: [
+    { id:'wh_u1', name:'Historical Thinking',          icon:'🧠',  topics:['Historical Thinking'] },
+    { id:'wh_u2', name:'Ancient Civilizations',        icon:'🏛️',  topics:['Ancient Civilizations'] },
+    { id:'wh_u3', name:'World Religions',              icon:'🕊️',  topics:['World Religions'] },
+    { id:'wh_u4', name:'Trade & Exchange',             icon:'🗺️',  topics:['Trade & Exchange'] },
+  ],
+
+  algebra1: [
+    { id:'alg1_u1', name:'Linear Equations',           icon:'⚖️',  topics:['Linear Equations','Linear Inequalities'] },
+    { id:'alg1_u2', name:'Slope & Linear Functions',   icon:'📉',  topics:['Slope & Linear Functions'] },
+    { id:'alg1_u3', name:'Systems of Equations',       icon:'🔀',  topics:['Systems of Equations'] },
+    { id:'alg1_u4', name:'Polynomials & Factoring',    icon:'🔢',  topics:['Polynomials','Factoring'] },
+    { id:'alg1_u5', name:'Quadratics',                 icon:'∩',   topics:['Quadratics'] },
+    { id:'alg1_u6', name:'Exponents & Radicals',       icon:'⚡',  topics:['Exponents & Radicals'] },
+  ],
+
+  geometry: [
+    { id:'geo_u1', name:'Angles & Lines',              icon:'📏',  topics:['Angles & Lines'] },
+    { id:'geo_u2', name:'Triangles',                   icon:'🔺',  topics:['Triangles'] },
+    { id:'geo_u3', name:'Right Triangles & Trig',      icon:'📐',  topics:['Right Triangles'] },
+    { id:'geo_u4', name:'Quadrilaterals & Polygons',   icon:'🔷',  topics:['Quadrilaterals'] },
+    { id:'geo_u5', name:'Circles',                     icon:'⭕',  topics:['Circles'] },
+    { id:'geo_u6', name:'Area & Volume',               icon:'📦',  topics:['Area & Volume'] },
+    { id:'geo_u7', name:'Transformations',             icon:'🔄',  topics:['Transformations'] },
+    { id:'geo_u8', name:'Logic & Proofs',              icon:'🧩',  topics:['Logic & Proofs'] },
+  ],
+
+  spanish1: [
+    { id:'sp1_u1', name:'Greetings & Expressions',     icon:'👋',  topics:['Greetings'] },
+    { id:'sp1_u2', name:'Numbers & Time',              icon:'🕐',  topics:['Numbers & Time'] },
+    { id:'sp1_u3', name:'Nouns, Articles & Adjectives',icon:'📝',  topics:['Nouns & Articles','Adjective Agreement'] },
+    { id:'sp1_u4', name:'Present Tense',               icon:'🗣️', topics:['Present Tense -ar','Present Tense -er/-ir'] },
+    { id:'sp1_u5', name:'Ser vs. Estar',               icon:'⚖️',  topics:['Ser vs. Estar Basics'] },
+    { id:'sp1_u6', name:'Tener, Ir & Gustar',          icon:'🎯',  topics:['Common Irregular Verbs','Gustar'] },
+    { id:'sp1_u7', name:'Question Words',              icon:'❓',  topics:['Question Words'] },
+  ],
 };
 
 /* Returns all questions for a specific unit */
