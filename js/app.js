@@ -8,17 +8,7 @@
 
 const CIRCUMFERENCE = 2 * Math.PI * 45; // SVG timer ring (r=45)
 
-const SEEDED_LEADERBOARD = [
-  {name:'Aria K.',   xp:840, streak:12, emoji:'🦁'},
-  {name:'Marcus T.', xp:720, streak:9,  emoji:'🐯'},
-  {name:'Sofia R.',  xp:670, streak:7,  emoji:'🦊'},
-  {name:'Ethan W.',  xp:590, streak:5,  emoji:'🐻'},
-  {name:'Chloe L.',  xp:520, streak:8,  emoji:'🐼'},
-  {name:'Jordan M.', xp:430, streak:3,  emoji:'🦅'},
-  {name:'Priya S.',  xp:370, streak:6,  emoji:'🦋'},
-  {name:'Tyler B.',  xp:280, streak:2,  emoji:'🐸'},
-  {name:'Emma J.',   xp:190, streak:4,  emoji:'🦄'},
-];
+// Leaderboard data now comes from auth.js (Auth.leaderboardEntries())
 
 const ACHIEVEMENTS = [
   {id:'first',    title:'First Step',    desc:'Complete your first session',          icon:'⭐'},
@@ -57,7 +47,9 @@ const S = {
 
   // Session (ephemeral)
   sesSubjects:   [],
+  sesUnitId:     null,
   sesDuration:   5,
+  sesStartTime:  0,
   sesState:      'idle', // idle|question|feedback|finished
   sesQuestion:   null,
   sesOptions:    [],
@@ -91,12 +83,12 @@ function save() {
     sessions:      S.sessions.slice(0, 50),
     unlockedAchs:  S.unlockedAchs,
   };
-  localStorage.setItem('mldata', JSON.stringify(data));
+  localStorage.setItem(Auth.dataKey(), JSON.stringify(data));
 }
 
 function load() {
   try {
-    const raw = localStorage.getItem('mldata');
+    const raw = localStorage.getItem(Auth.dataKey());
     if (!raw) return;
     const d = JSON.parse(raw);
     Object.assign(S, d);
@@ -178,6 +170,7 @@ function renderView(viewId, data, back) {
     case 'leaderboard': html = renderLeaderboard(); break;
     case 'resources':   html = renderResources(); break;
     case 'profile':     html = renderProfile(); break;
+    case 'unitselect':  html = renderUnitSelect(data); break;
     case 'setup':       html = renderSetup(data); break;
     case 'session':     html = renderSession(); break;
     case 'results':     html = renderResults(); break;
@@ -221,7 +214,7 @@ function renderHome() {
     const subXP = S.sessions.filter(s=>s.subjects.includes(key)).reduce((t,s)=>t+s.xpEarned,0);
     return `
     <button class="subject-card" style="background:linear-gradient(135deg,${sub.color},${sub.color}BB)"
-            onclick="startSetup('${key}')">
+            onclick="showUnitSelect('${key}')">
       <div class="subject-card-icon-bg">${sub.emoji}</div>
       <div class="subject-card-icon">${sub.emoji}</div>
       <div class="subject-card-name">${sub.short}</div>
@@ -288,11 +281,75 @@ function renderHome() {
 
 function startSetup(subjectKey) {
   S.sesSubjects = [subjectKey];
+  S.sesUnitId   = null;
   navigate('setup', { subjects: [subjectKey] });
 }
 function startMedley() {
   S.sesSubjects = Object.keys(SUBJECTS);
+  S.sesUnitId   = null;
   navigate('setup', { subjects: Object.keys(SUBJECTS) });
+}
+
+// ── Unit Selection ──────────────────────────────────────────────
+function showUnitSelect(subjectKey) {
+  S.sesSubjects = [subjectKey];
+  navigate('unitselect', { subject: subjectKey });
+}
+
+function renderUnitSelect(data) {
+  const subKey = data.subject || S.sesSubjects[0];
+  const sub    = SUBJECTS[subKey];
+  const units  = (typeof SUBJECT_UNITS !== 'undefined' && SUBJECT_UNITS[subKey]) || [];
+  const color  = sub.color;
+  const total  = (QUESTION_BANK[subKey] || []).length;
+
+  const unitCards = units.map(unit => {
+    const count  = getUnitQuestionCount(subKey, unit.id);
+    const locked = unit.locked || count === 0;
+    return `
+    <button class="unit-card ${locked?'locked':''}"
+            ${locked ? 'disabled' : `onclick="startUnitSetup('${subKey}','${unit.id}')"`}
+            style="${locked ? '' : 'border-left:4px solid '+color}">
+      <div class="unit-card-icon">${unit.icon}</div>
+      <div class="unit-card-info">
+        <div class="unit-card-name">${unit.name}</div>
+        <div class="unit-card-count">${locked ? 'Coming soon' : count+' questions'}</div>
+      </div>
+      <div class="unit-card-arrow">${locked ? '🔒' : '→'}</div>
+    </button>`;
+  }).join('');
+
+  return `<div class="view">
+    <div class="nav-bar">
+      <button class="nav-btn" onclick="goBack()">← Back</button>
+      <div class="nav-title">${sub.emoji} ${sub.short}</div>
+      <div class="nav-btn right"></div>
+    </div>
+
+    <div class="page-title" style="padding-top:8px">Choose a Unit</div>
+
+    <button class="unit-card all-units" onclick="startSetup('${subKey}')"
+            style="border-left:4px solid ${color}">
+      <div class="unit-card-icon">📚</div>
+      <div class="unit-card-info">
+        <div class="unit-card-name">All Units</div>
+        <div class="unit-card-count">${total} questions</div>
+      </div>
+      <div class="unit-card-arrow">→</div>
+    </button>
+
+    <div style="padding:4px 16px 8px">
+      <div class="label-sm">By Unit</div>
+    </div>
+    ${unitCards}
+    <div style="height:20px"></div>
+  </div>`;
+}
+
+function startUnitSetup(subjectKey, unitId) {
+  S.sesSubjects = [subjectKey];
+  S.sesUnitId   = unitId;
+  navigate('setup', { subject: subjectKey, unitId });
 }
 
 function renderSetup() {
@@ -438,9 +495,22 @@ function startSession() {
   S.sesUsed = new Set();
   S.sesTimeLeft = S.sesDuration * 60;
 
-  // Build question queue
-  let allQ = S.sesSubjects.flatMap(sub => (QUESTION_BANK[sub]||[]).map(q=>({...q,subject:sub})));
-  S.sesQueue = shuffle(allQ);
+  // Build question queue (with optional unit filter)
+  let allQ = S.sesSubjects.flatMap(sub => {
+    let qs = QUESTION_BANK[sub] || [];
+    if (S.sesSubjects.length === 1 && S.sesUnitId && typeof SUBJECT_UNITS !== 'undefined') {
+      const unit = (SUBJECT_UNITS[sub] || []).find(u => u.id === S.sesUnitId);
+      if (unit && unit.topics && unit.topics.length > 0) {
+        qs = qs.filter(q => unit.topics.includes(q.topic));
+      }
+    }
+    return qs.map(q => ({...q, subject:sub}));
+  });
+
+  // Daily seeded shuffle — same order all day, rotates tomorrow
+  const seed = typeof getDaySeed === 'function' ? getDaySeed() : Date.now();
+  S.sesQueue = typeof seededShuffle === 'function' ? seededShuffle(allQ, seed) : shuffle(allQ);
+  S.sesStartTime = Date.now();
 
   // Update title
   const t = document.getElementById('ses-title');
@@ -501,7 +571,7 @@ function renderQuestionCard() {
       else if (opt === S.sesSelected) { cls += ' wrong'; icon = '<span class="answer-btn-icon">❌</span>'; }
     }
     const disabled = S.sesState === 'feedback' ? 'disabled' : '';
-    return `<button class="${cls}" ${disabled} onclick="submitAnswer(${JSON.stringify(opt)})">${opt}${icon}</button>`;
+    return `<button class="${cls}" ${disabled} onclick="submitAnswer(${i})">${opt}${icon}</button>`;
   }).join('');
 
   const expHTML = S.sesState === 'feedback' ? `
@@ -534,8 +604,9 @@ function renderQuestionCard() {
   document.getElementById('ses-scroll')?.scrollTo({top:0, behavior:'smooth'});
 }
 
-function submitAnswer(answer) {
+function submitAnswer(idx) {
   if (S.sesState !== 'question' || !S.sesQuestion) return;
+  const answer = S.sesOptions[idx];
   S.sesSelected = answer;
   S.sesState = 'feedback';
   S.sesQAnswered++;
@@ -600,14 +671,17 @@ function endSession() {
   }
 
   // Record session
+  const actualMs = S.sesStartTime > 0 ? Date.now() - S.sesStartTime : S.sesDuration * 60000;
   const rec = {
-    id: Date.now(),
-    date: new Date().toISOString(),
-    subjects: [...S.sesSubjects],
-    duration: S.sesDuration,
-    answered: S.sesQAnswered,
-    correct: S.sesQCorrect,
-    xpEarned: S.sesXP,
+    id:            Date.now(),
+    date:          new Date().toISOString(),
+    subjects:      [...S.sesSubjects],
+    unitId:        S.sesUnitId || null,
+    duration:      S.sesDuration,
+    actualMinutes: Math.max(1, Math.round(actualMs / 60000)),
+    answered:      S.sesQAnswered,
+    correct:       S.sesQCorrect,
+    xpEarned:      S.sesXP,
   };
   S.sessions.unshift(rec);
   S.totalXP += S.sesXP;
@@ -786,9 +860,11 @@ function renderLeaderboard() {
 }
 
 function buildLeaderboard() {
-  const me = { name: S.userName||'You', xp: S.totalXP, streak: S.streakDays, emoji: '⭐', isMe: true };
-  const all = [...SEEDED_LEADERBOARD.map(e=>({...e, isMe:false})), me];
-  return all.sort((a,b) => b.xp - a.xp);
+  if (typeof Auth !== 'undefined') {
+    return Auth.leaderboardEntries().sort((a,b) => b.xp - a.xp);
+  }
+  // Fallback if auth not loaded
+  return [{ name: S.userName||'You', xp: S.totalXP, streak: S.streakDays, emoji: '⭐', isMe: true }];
 }
 
 // ============================================================
@@ -887,20 +963,23 @@ function renderProfile() {
     </div>`;
   }).join('');
 
+  const authUser     = typeof Auth !== 'undefined' ? Auth.user() : null;
+  const displayName  = authUser ? authUser.name  : (S.userName || 'You');
+  const displayEmoji = authUser ? authUser.emoji : '⭐';
+
   return `<div class="view">
     <div class="page-title">Profile 👤</div>
 
     <div class="profile-avatar-section">
-      <div class="avatar-circle" id="avatar-circle">
-        ${(S.userName||'F').charAt(0).toUpperCase()}
-      </div>
+      <div class="avatar-circle">${displayEmoji}</div>
       <div style="flex:1">
-        <input class="profile-name-input" id="name-input"
-               value="${S.userName||''}" placeholder="Your Name"
-               maxlength="20"/>
+        <div class="profile-display-name">${displayName}</div>
         <div class="profile-lvl">Level ${lvl} · ${levelTitle(lvl)}</div>
       </div>
     </div>
+
+    ${typeof renderWeeklyGraph === 'function' ? renderWeeklyGraph(S.sessions) : ''}
+    ${typeof renderWeeklyReport === 'function' ? renderWeeklyReport(S.sessions) : ''}
 
     <div class="mini-stats">
       <div class="mini-stat">
@@ -953,19 +1032,14 @@ function renderProfile() {
       </div>
     </div>
 
+    ${typeof Auth !== 'undefined' ? `
+    <button class="logout-btn" onclick="Auth.logout()">Sign Out</button>` : ''}
     <button class="reset-btn" onclick="confirmReset()">🗑 Reset All Progress</button>
   </div>`;
 }
 
 function setupProfileInput() {
-  const input = document.getElementById('name-input');
-  if (!input) return;
-  input.addEventListener('input', () => {
-    S.userName = input.value;
-    const av = document.getElementById('avatar-circle');
-    if (av) av.textContent = (S.userName||'F').charAt(0).toUpperCase();
-    save();
-  });
+  // Name editing removed — identity managed by auth
 }
 
 function confirmReset() {
@@ -1027,7 +1101,8 @@ function dismissLevelUp() {
 // INIT
 // ============================================================
 
-document.addEventListener('DOMContentLoaded', () => {
+/* initApp — called by bootApp() in auth.js after login confirmed */
+function initApp() {
   load();
 
   // Service Worker
@@ -1042,4 +1117,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial view
   switchTab('home');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof bootApp === 'function') {
+    bootApp();
+  } else {
+    initApp(); // fallback if auth.js not loaded
+  }
 });

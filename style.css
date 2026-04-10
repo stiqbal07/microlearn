@@ -896,3 +896,275 @@ html, body {
 .mt20 { margin-top: 20px; }
 .mb30 { margin-bottom: 30px; }
 .divider { height: 1px; background: var(--border); margin: 0 16px; }
+.hidden { display: none !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   LOGIN SCREEN
+   ══════════════════════════════════════════════════════════════ */
+#login-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 24px;
+}
+.login-card {
+  background: var(--card);
+  border-radius: var(--r-lg);
+  padding: 36px 24px 32px;
+  width: 100%;
+  max-width: 340px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.login-logo {
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 4px 12px rgba(88,86,214,.4));
+}
+.login-title {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -.4px;
+  margin-bottom: 4px;
+}
+.login-sub {
+  font-size: 14px;
+  color: var(--t2);
+  margin-bottom: 24px;
+}
+.login-error {
+  width: 100%;
+  background: #FF3B3022;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--border);
+  background: var(--card2);
+  color: var(--t1);
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+}
+.login-input:focus { border-color: var(--c-accent); }
+.login-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--r-md);
+  border: none;
+  background: var(--c-accent);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 6px;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 6px 20px rgba(88,86,214,.4);
+}
+.login-btn:active { transform: scale(.97); }
+
+/* ══════════════════════════════════════════════════════════════
+   UNIT SELECTION
+   ══════════════════════════════════════════════════════════════ */
+.unit-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: calc(100% - 32px);
+  margin: 0 16px 10px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--t1);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .12s;
+}
+.unit-card:active:not(:disabled) { transform: scale(.98); }
+.unit-card.all-units {
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, var(--card), var(--card2));
+}
+.unit-card.locked {
+  opacity: .5;
+  cursor: default;
+  border-left-color: var(--border) !important;
+}
+.unit-card-icon {
+  font-size: 26px;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+}
+.unit-card-info { flex: 1; min-width: 0; }
+.unit-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.unit-card-count {
+  font-size: 12px;
+  color: var(--t2);
+  margin-top: 2px;
+}
+.unit-card-arrow {
+  font-size: 16px;
+  color: var(--t3);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   WEEKLY GRAPH
+   ══════════════════════════════════════════════════════════════ */
+.graph-card {
+  background: var(--card);
+  border-radius: var(--r-lg);
+  padding: 16px 16px 20px;
+  margin: 0 16px 14px;
+  box-shadow: var(--shadow);
+}
+.graph-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.graph-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+.graph-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--card2);
+  border-radius: 8px;
+  padding: 3px;
+}
+.graph-tab {
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--t2);
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.graph-tab.active {
+  background: var(--c-accent);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   WEEKLY REPORT
+   ══════════════════════════════════════════════════════════════ */
+.report-card {
+  background: var(--card);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  margin: 0 16px 14px;
+  box-shadow: var(--shadow);
+}
+.report-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.report-stat {
+  background: var(--card2);
+  border-radius: var(--r-sm);
+  padding: 10px 6px;
+  text-align: center;
+}
+.report-stat-val {
+  font-size: 20px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.report-unit { font-size: 13px; font-weight: 600; }
+.report-stat-lbl {
+  font-size: 10px;
+  color: var(--t2);
+  font-weight: 600;
+  margin-top: 3px;
+}
+.report-best {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 8px 0 4px;
+  border-top: 1px solid var(--border);
+}
+.report-best-label { color: var(--t2); }
+.report-best-val { font-weight: 700; }
+.report-active {
+  font-size: 11px;
+  color: var(--t3);
+  margin-top: 6px;
+  text-align: center;
+}
+.report-empty {
+  font-size: 13px;
+  color: var(--t2);
+  text-align: center;
+  padding: 12px 0 4px;
+}
+
+/* ── Profile updates ── */
+.profile-display-name {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.2px;
+}
+.logout-btn {
+  display: block;
+  margin: 4px 16px 8px;
+  width: calc(100% - 32px);
+  padding: 14px;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c-accent);
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+}
+

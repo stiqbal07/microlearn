@@ -1,9 +1,12 @@
-const CACHE = 'microlearn-v1';
+const CACHE = 'microlearn-v2';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './js/data.js',
+  './js/auth.js',
+  './js/units.js',
+  './js/progress.js',
   './js/app.js',
   './manifest.json',
   './icon.svg'
